@@ -68,4 +68,6 @@ router.get("/me", authenticateToken, (req, res) => {
 }
 );
 
+router.post("/logout", authenticateToken, authController.logout);
+
 export default router;

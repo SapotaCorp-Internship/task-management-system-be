@@ -28,6 +28,15 @@ class AuthController {
       `${process.env.FRONTEND_URL}/dashboard?login=success`
     );
   }
+
+  async logout(req: Request, res: Response) {
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: false,
+      sameSite: "lax",
+    });
+    return res.json({ success: true });
+  }
 }
 
 export default new AuthController();

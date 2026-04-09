@@ -28,6 +28,18 @@ class AuthService {
 
     return user
   }
+
+  async logout(req: any) {
+    return new Promise((resolve, reject) => {
+      req.logout((err: any) => {
+        if (err) {
+          reject(err)
+        } else {
+          resolve(true)
+        }
+      })
+    })
+  }
 }
 
 export default new AuthService()
