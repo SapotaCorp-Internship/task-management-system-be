@@ -8,7 +8,7 @@ declare global {
         email: string
         name: string
         googleId: string
-        avatar?: string | undefined
+        avatar: string | undefined
       }
     }
   }

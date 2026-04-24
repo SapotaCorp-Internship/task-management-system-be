@@ -9,7 +9,7 @@ export class ReminderController {
   async getStatus(req: Request, res: Response) {
     try {
       const taskId = Number(req.params.taskId)
-      const userId = req.user!.id
+      const userId = (req.user as { id: number }).id
 
       const task = await prisma.task.findFirst({
         where: { id: taskId, userId },
@@ -35,7 +35,7 @@ export class ReminderController {
   async resetReminder(req: Request, res: Response) {
     try {
       const taskId = Number(req.params.taskId)
-      const userId = req.user!.id
+     const userId = (req.user as { id: number }).id
 
       const task = await prisma.task.findFirst({
         where: { id: taskId, userId },

@@ -24,17 +24,25 @@ function handleTaskError(err: unknown, res: Response) {
 function parseQuery(query: Request["query"]): TaskQueryDto {
   const result: TaskQueryDto = {}
 
-  if (query.status !== undefined)
-    result.status = query.status as TaskQueryDto["status"]
-  if (query.priority !== undefined)
-    result.priority = query.priority as TaskQueryDto["priority"]
-  if (query.sortBy !== undefined)
-    result.sortBy = query.sortBy as TaskQueryDto["sortBy"]
-  if (query.sortOrder !== undefined)
-    result.sortOrder = query.sortOrder as TaskQueryDto["sortOrder"]
+  const status = query.status as string | undefined
+  if (status === "TODO" || status === "DOING" || status === "DONE")
+    result.status = status
+
+  const priority = query.priority as string | undefined
+  if (priority === "LOW" || priority === "MEDIUM" || priority === "HIGH")
+    result.priority = priority
+
+  const sortBy = query.sortBy as string | undefined
+  if (sortBy === "createdAt" || sortBy === "deadline" || sortBy === "priority")
+    result.sortBy = sortBy
+
+  const sortOrder = query.sortOrder as string | undefined
+  if (sortOrder === "asc" || sortOrder === "desc")
+    result.sortOrder = sortOrder
+
   if (query.categoryId !== undefined)
     result.categoryId = Number(query.categoryId)
-  if (query.search !== undefined) 
+  if (query.search !== undefined)
     result.search = query.search as string
   if (query.page !== undefined)
     result.page = Number(query.page)
