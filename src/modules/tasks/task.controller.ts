@@ -22,16 +22,25 @@ function handleTaskError(err: unknown, res: Response) {
 }
 
 function parseQuery(query: Request["query"]): TaskQueryDto {
-  const result: TaskQueryDto = {
-    status: query.status as TaskQueryDto["status"],
-    priority: query.priority as TaskQueryDto["priority"],
-    sortBy: query.sortBy as TaskQueryDto["sortBy"],
-    sortOrder: query.sortOrder as TaskQueryDto["sortOrder"],
-  }
-  if (query.categoryId !== undefined) result.categoryId = Number(query.categoryId)
-  if (query.search !== undefined) result.search = query.search as string
-  if (query.page !== undefined) result.page = Number(query.page)
-  if (query.limit !== undefined) result.limit = Number(query.limit)
+  const result: TaskQueryDto = {}
+
+  if (query.status !== undefined)
+    result.status = query.status as TaskQueryDto["status"]
+  if (query.priority !== undefined)
+    result.priority = query.priority as TaskQueryDto["priority"]
+  if (query.sortBy !== undefined)
+    result.sortBy = query.sortBy as TaskQueryDto["sortBy"]
+  if (query.sortOrder !== undefined)
+    result.sortOrder = query.sortOrder as TaskQueryDto["sortOrder"]
+  if (query.categoryId !== undefined)
+    result.categoryId = Number(query.categoryId)
+  if (query.search !== undefined) 
+    result.search = query.search as string
+  if (query.page !== undefined)
+    result.page = Number(query.page)
+  if (query.limit !== undefined)
+    result.limit = Number(query.limit)
+
   return result
 }
 

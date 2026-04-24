@@ -11,7 +11,6 @@ import reminderRoutes from "./modules/reminders/reminder.route.js";
 import { errorHandler } from "@/middleware/errorHandler.js";
 import passport from "@/config/auth.js";
 import { swaggerSpecs } from "@/config/swagger.js";
-import notificationRoutes from "@/modules/notifications/notification.routes.js";
 import { startReminderCron } from "@/modules/reminders/reminder.cron.js";
 import { createServer } from "http";
 import { initSocket } from "./config/socker.js";
@@ -58,7 +57,6 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 app.use("/api/auth", authRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/tasks", taskRoutes);
-app.use("/api/notifications", notificationRoutes);
 app.use("/api/reminders", reminderRoutes);
 
 app.use(errorHandler);
