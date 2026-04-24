@@ -16,12 +16,15 @@ passport.use(
         });
 
         if (!user) {
+          const avatarValue = profile.photos?.[0]?.value;
+
           user = await prisma.user.create({
             data: {
               googleId: profile.id,
               name: profile.displayName,
-              email: profile.emails?.[0]?.value || "",
-              avatar: profile.photos?.[0]?.value,
+              email: profile.emails?.[0]?.value ?? "",
+              // Chỉ truyền avatar nếu có giá trị, tránh lỗi exactOptionalPropertyTypes
+              ...(avatarValue !== undefined && { avatar: avatarValue }),
             },
           });
         }
