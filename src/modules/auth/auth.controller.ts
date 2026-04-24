@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken"
 const COOKIE_OPTIONS = {
   httpOnly: true,                    // JS phía client không đọc được → chống XSS
   secure: process.env.NODE_ENV === "production", // Chỉ gửi qua HTTPS trên production
-  sameSite: "lax" as const,          // Bảo vệ khỏi CSRF, vẫn cho phép OAuth redirect
+  sameSite: "none" as const,          // Bảo vệ khỏi CSRF, vẫn cho phép OAuth redirect
 } as const
 
 const TOKEN_MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000
