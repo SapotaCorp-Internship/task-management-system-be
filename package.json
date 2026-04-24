@@ -4,9 +4,9 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "build": "prisma generate && tsc && tsc-alias",
-  "start": "node dist/index.js",
-  "dev": "nodemon --exec \"tsx --tsconfig ./tsconfig.json src/index.ts\"",
+    "build": "prisma generate && prisma migrate deploy && tsc && tsc-alias",
+    "start": "node dist/index.js",
+    "dev": "nodemon --exec \"tsx --tsconfig ./tsconfig.json src/index.ts\"",
     "db:generate": "prisma generate",
     "studio": "prisma studio",
     "db:migrate": "prisma migrate dev",
