@@ -37,13 +37,13 @@ model User {
   taskHistories TaskHistory[]
   reminders     Reminder[]
   taskComments  TaskComment[]
-
+  notifications Notification[]
   @@map("users")
 }
 
 model Category {
   id        Int      @id @default(autoincrement())
-  name      String
+  name      String  
   color     String?
   userId    Int
   createdAt DateTime @default(now())
@@ -81,6 +81,7 @@ model Task {
   histories   TaskHistory[]
   reminders   Reminder[]
   comments    TaskComment[]
+  notifications Notification[]
 
   @@index([userId])
   @@index([categoryId])

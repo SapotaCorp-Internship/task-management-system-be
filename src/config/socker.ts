@@ -26,6 +26,6 @@ export const initSocket = (server: HttpServer) => {
 };
 
 export const getIO = () => {
-  if (!io) throw new Error("Socket.io chưa được khởi tạo!");
+  if (!io) throw new Error("Socket.io not initialized yet!");
   return io;
-};
+}; 

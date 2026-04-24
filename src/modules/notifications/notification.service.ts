@@ -1,5 +1,5 @@
 import prisma from "@/config/database.js";
-import { CreateNotificationDto } from "../dto/notification.dto.js";
+import { CreateNotificationDto } from "../notification.dto.js";
 
 export class NotificationService {
   async getNotifications(userId: number) {

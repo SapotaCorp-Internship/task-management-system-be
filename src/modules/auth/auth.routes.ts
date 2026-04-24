@@ -1,7 +1,7 @@
 import { authenticateToken } from '@/middleware/auth.middleware.js';
 import { Router } from "express";
 import passport from "@/config/auth.js";
-import authController from "@/modules/auth/controller/auth.controller.js";
+import authController from "@/modules/auth/auth.controller.js";
 
 const router = Router();
 const frontendUrl = process.env.FRONTEND_URL || "http://localhost:5173";

@@ -1,7 +1,10 @@
 import { Router } from "express";
-import reminderController from "../controller/reminder.controller.js";
+import reminderController from "./reminder.controller.js";
+import { authenticateToken } from "@/middleware/auth.middleware.js";
 
 const router = Router();
+
+router.use(authenticateToken)
 
 router.get("/status/:taskId", reminderController.getStatus);
 

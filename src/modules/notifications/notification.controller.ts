@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import notificationService from "../service/notification.service.js";
+import notificationService from "./notification.service.js";
 import { success, error } from "@/utils/response.js";
 
 interface AuthRequest extends Request {
