@@ -14,13 +14,16 @@ import { swaggerSpecs } from "@/config/swagger.js";
 import { startReminderCron } from "@/modules/reminders/reminder.cron.js";
 import { createServer } from "http";
 import { initSocket } from "./config/socker.js";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 
 const app = express();
 const httpServer = createServer(app);
 const PORT = process.env.PORT || 3000;
-const FRONTEND_URL = process.env.FRONTEND_URL || "https://task-management-system-fyxl32jwi-minhhoang1225s-projects.vercel.app";
+const FRONTEND_URL =
+  process.env.FRONTEND_URL ||
+  "https://task-management-system-fyxl32jwi-minhhoang1225s-projects.vercel.app";
 
 const specs = swaggerSpecs;
 
@@ -41,6 +44,7 @@ app.use(
   }),
 );
 app.use(express.json());
+app.use(cookieParser());
 app.use(
   session({
     secret: process.env.SESSION_SECRET || "secret",
