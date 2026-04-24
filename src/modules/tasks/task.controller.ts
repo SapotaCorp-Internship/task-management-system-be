@@ -55,7 +55,7 @@ function parseQuery(query: Request["query"]): TaskQueryDto {
 export class TaskController {
   async getTasks(req: Request, res: Response) {
     try {
-      const userId = req.user!.id
+      const userId = (req.user as { id: number }).id
       const query = parseQuery(req.query)
       const result = await taskService.getTasks(userId, query)
       return success(res, {
@@ -74,7 +74,7 @@ export class TaskController {
 
   async getTask(req: Request, res: Response) {
     try {
-      const userId = req.user!.id
+      const userId = (req.user as { id: number }).id
       const taskId = parseId(req.params.id)
       if (!taskId) return error(res, "Invalid task id", 400)
       const task = await taskService.getTaskById(taskId, userId)
@@ -87,7 +87,7 @@ export class TaskController {
 
   async createTask(req: Request, res: Response) {
     try {
-      const userId = req.user!.id
+      const userId = (req.user as { id: number }).id
       const data: CreateTaskDto = req.body
       const task = await taskService.createTask(userId, data)
       return success(res, task, 201)
@@ -98,7 +98,7 @@ export class TaskController {
 
   async updateTask(req: Request, res: Response) {
     try {
-      const userId = req.user!.id
+      const userId = (req.user as { id: number }).id
       const taskId = parseId(req.params.id)
       if (!taskId) return error(res, "Invalid task id", 400)
       const data: UpdateTaskDto = req.body
@@ -111,7 +111,7 @@ export class TaskController {
 
   async deleteTask(req: Request, res: Response) {
     try {
-      const userId = req.user!.id
+      const userId = (req.user as { id: number }).id
       const taskId = parseId(req.params.id)
       if (!taskId) return error(res, "Invalid task id", 400)
       await taskService.deleteTask(taskId, userId)
@@ -123,7 +123,7 @@ export class TaskController {
 
   async getTaskHistory(req: Request, res: Response) {
     try {
-      const userId = req.user!.id
+      const userId = (req.user as { id: number }).id
       const taskId = parseId(req.params.id)
       if (!taskId) return error(res, "Invalid task id", 400)
       const history = await taskService.getTaskHistory(taskId, userId)
